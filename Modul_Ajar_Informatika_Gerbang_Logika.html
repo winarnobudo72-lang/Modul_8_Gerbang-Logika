@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modul Ajar Informatika — Gerbang Logika</title>
+<style>
+:root{--navy:#12213a;--blue:#2563eb;--cyan:#06b6d4;--ink:#172033;--muted:#5b6578;--paper:#fff;--bg:#eef3fa;--line:#d8e1ef;--green:#16805d;--orange:#c56a12}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:Arial,Helvetica,sans-serif;color:var(--ink);line-height:1.58}
+header{background:linear-gradient(120deg,#12213a,#1d4ed8 70%,#06b6d4);color:#fff;padding:28px 20px 32px}
+.hero{max-width:1120px;margin:auto}.eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:.78rem;font-weight:bold;opacity:.85}
+h1{font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;margin:.45rem 0}.hero p{max-width:760px;margin:.5rem 0}
+.meta{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.pill{background:#ffffff20;border:1px solid #ffffff55;border-radius:999px;padding:6px 12px;font-size:.9rem}
+nav{position:sticky;top:0;background:#fff;z-index:10;border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:8px;overflow-x:auto;justify-content:center}
+nav a{white-space:nowrap;color:#24406b;text-decoration:none;font-size:.9rem;font-weight:bold;padding:7px 10px;border-radius:9px}nav a:hover{background:#eaf1ff}
+main{max-width:1120px;margin:22px auto;padding:0 16px 48px}.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:clamp(17px,3vw,28px);margin:18px 0;box-shadow:0 6px 22px #18345b0a}
+h2{color:#173b75;margin:0 0 14px;font-size:1.55rem}h3{color:#1d4ed8;margin:20px 0 8px}h4{margin:8px 0;color:#203a61}
+.lead{font-size:1.06rem;color:#34445d}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.mini{border:1px solid var(--line);background:#f8faff;border-radius:13px;padding:15px}.mini strong{color:#17459b}
+table{width:100%;border-collapse:collapse;margin:10px 0 16px}th,td{border:1px solid var(--line);padding:9px 10px;text-align:center}th{background:#eaf1ff;color:#183c78}td:first-child{text-align:center}
+.note{background:#effaf7;border-left:4px solid var(--green);padding:12px 15px;border-radius:8px}.warning{background:#fff7ed;border-left:4px solid var(--orange);padding:12px 15px;border-radius:8px}
+.gate-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.gate{border:1px solid var(--line);border-radius:14px;padding:15px;background:#fbfdff}.gate svg{width:100%;height:92px;display:block;background:#f0f5ff;border-radius:10px}
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:12px 0}.controls label{font-weight:bold}
+select,input[type=text],input[type=number]{padding:9px 10px;border:1px solid #bac8dd;border-radius:8px;font:inherit;max-width:100%}
+button{border:0;border-radius:10px;padding:10px 15px;font-weight:bold;font-size:.95rem;cursor:pointer;background:var(--blue);color:white}button:hover{filter:brightness(.93)}button.secondary{background:#e6edf8;color:#1c3762}button.danger{background:#b42318}button.green{background:#16805d}
+.sim-box{background:#f8faff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.lamp{display:inline-flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:#e8edf5;font-weight:bold}
+.lamp.on{background:#dcfce7;color:#166534}.lamp.off{background:#e5e7eb;color:#374151}
+.big-digit{font-size:2rem;font-weight:bold;color:#1d4ed8}.question{border:1px solid var(--line);border-radius:12px;padding:15px;margin:13px 0;break-inside:avoid}.question p{margin:0 0 9px}.option{display:block;padding:6px 8px;border-radius:7px;cursor:pointer}.option:hover{background:#eff5ff}.option input{margin-right:8px}.quiz-tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.status{font-weight:bold;color:#1d4ed8}.small{font-size:.88rem;color:var(--muted)}.hidden{display:none!important}
+footer{text-align:center;color:#5b6578;padding:22px}
+@media(max-width:600px){nav{justify-content:flex-start}.card{border-radius:13px}th,td{padding:6px;font-size:.9rem}}
+@media print{body{background:white;font-size:10.5pt}header{background:#fff!important;color:#111!important;padding:12px 0;border-bottom:2px solid #222}.hero p,.pill{color:#111!important}.pill{border:1px solid #777;background:white}.eyebrow{color:#333}nav,.no-print,button,.controls button{display:none!important}main{max-width:none;margin:0;padding:0}.card{box-shadow:none;border:1px solid #aaa;border-radius:0;margin:12px 0;padding:15px;break-inside:avoid}h2,h3,h4{color:#111}a{color:#111;text-decoration:none}.gate svg{background:white}.question{break-inside:avoid}input[type=radio]{appearance:auto}footer{display:none}}
+</style>
+</head>
+<body>
+<header><div class="hero">
+<div class="eyebrow">Modul Ajar Interaktif • Informatika</div>
+<h1>Pemanfaatan Perangkat Digital</h1>
+<p>Memahami gerbang logika dasar melalui simbol, tabel kebenaran, simulasi input–output, dan penerapannya dalam perangkat digital sehari-hari.</p>
+<div class="meta"><span class="pill">SMP NEGERI 2 NGADIREJO</span><span class="pill">Fase D / Kelas VIII</span><span class="pill">Guru: Budi Winarno, S.Kom.</span><span class="pill">Semester Genap</span></div>
+</div></header>
+<nav><a href="#identitas">Identitas</a><a href="#tujuan">Tujuan & ATP</a><a href="#materi">Materi</a><a href="#simulasi">Simulasi</a><a href="#penerapan">Penerapan</a><a href="#lkpd">LKPD</a><a href="#kuis">Kuis 60 Menit</a><a href="#admin">Admin/Guru</a></nav>
+<main>
+<section class="card" id="identitas"><h2>1. Identitas Modul</h2><div class="grid">
+<div class="mini"><strong>Satuan Pendidikan</strong><br>SMP Negeri 2 Ngadirejo</div><div class="mini"><strong>Mata Pelajaran</strong><br>Informatika</div><div class="mini"><strong>Fase / Kelas</strong><br>D / VIII</div><div class="mini"><strong>Materi Pokok</strong><br>Pemanfaatan Perangkat Digital — Gerbang Logika Dasar</div><div class="mini"><strong>Guru</strong><br>Budi Winarno, S.Kom.</div><div class="mini"><strong>Alokasi Waktu</strong><br>Dapat disesuaikan; kuis 60 menit</div></div>
+<h3>Deskripsi Singkat</h3><p>Modul ini mengajak peserta didik mengenali cara perangkat digital mengambil keputusan sederhana. Gerbang logika menerima satu atau lebih masukan biner (0 dan 1), lalu menghasilkan keluaran berdasarkan aturan tertentu.</p>
+</section>
+<section class="card" id="tujuan"><h2>2. Tujuan Pembelajaran</h2><ol><li>Menjelaskan konsep logika biner dan fungsi gerbang logika dasar.</li><li>Mengenali simbol serta aturan kerja gerbang NOT, AND, OR, NAND, NOR, XOR, dan XNOR.</li><li>Membaca dan menyusun tabel kebenaran berdasarkan kombinasi masukan.</li><li>Memprediksi keluaran gerbang logika dari kondisi input yang diberikan.</li><li>Menghubungkan gerbang logika dengan contoh pemanfaatan perangkat digital dalam kehidupan sehari-hari.</li><li>Menyelesaikan LKPD dan kuis secara mandiri, cermat, serta bertanggung jawab.</li></ol>
+<h3>Alur Tujuan Pembelajaran (ATP)</h3><div class="grid"><div class="mini"><strong>1. Mengenali</strong><br>Memahami bit 0 dan 1 serta konsep input, proses, output.</div><div class="mini"><strong>2. Memodelkan</strong><br>Mengenali simbol dan aturan setiap gerbang logika.</div><div class="mini"><strong>3. Menguji</strong><br>Membaca tabel kebenaran dan menjalankan simulasi input-output.</div><div class="mini"><strong>4. Menerapkan</strong><br>Menganalisis contoh rangkaian logika dalam perangkat digital.</div><div class="mini"><strong>5. Mengevaluasi</strong><br>Mengerjakan LKPD dan kuis untuk mengukur pemahaman.</div></div>
+<h3>Pertanyaan Pemantik</h3><ul><li>Bagaimana komputer memutuskan apakah suatu kondisi benar atau salah?</li><li>Mengapa lampu otomatis dapat menyala hanya pada kondisi tertentu?</li><li>Bagaimana dua sakelar dapat memengaruhi satu keluaran?</li></ul>
+</section>
+<section class="card" id="materi"><h2>3. Materi: Gerbang Logika Dasar</h2><p class="lead">Sistem digital umumnya menggunakan dua keadaan logika: <b>0 (LOW / salah / mati)</b> dan <b>1 (HIGH / benar / aktif)</b>. Gerbang logika mengolah keadaan ini sesuai aturan tertentu.</p>
+<div class="note"><b>Istilah penting:</b> Input adalah masukan (misalnya A dan B), output adalah hasil (Y), dan tabel kebenaran menunjukkan output untuk setiap kombinasi input.</div>
+<h3>Simbol dan fungsi</h3><div class="gate-grid">
+<div class="gate"><h4>NOT (pembalik)</h4><svg viewBox="0 0 240 92" aria-label="Simbol gerbang NOT"><path d="M35 20 L35 72 L95 46 Z" fill="none" stroke="#1d4ed8" stroke-width="3"/><circle cx="101" cy="46" r="6" fill="white" stroke="#1d4ed8" stroke-width="3"/><path d="M12 46 H35 M107 46 H145" stroke="#1d4ed8" stroke-width="3"/><text x="12" y="36" font-size="12">A</text><text x="148" y="50" font-size="12">Y</text></svg><p>Output selalu kebalikan input: \(Y = \neg A\).</p><table><tr><th>A</th><th>Y</th></tr><tr><td>0</td><td>1</td></tr><tr><td>1</td><td>0</td></tr></table></div>
+<div class="gate"><h4>AND (dan)</h4><svg viewBox="0 0 240 92"><path d="M45 18 H75 A28 28 0 0 1 75 74 H45 Z" fill="none" stroke="#1d4ed8" stroke-width="3"/><path d="M12 31 H45 M12 61 H45 M103 46 H145" stroke="#1d4ed8" stroke-width="3"/><text x="13" y="23" font-size="12">A</text><text x="13" y="54" font-size="12">B</text><text x="148" y="50" font-size="12">Y</text></svg><p>Output 1 hanya jika semua input 1: \(Y = A \land B\).</p><table><tr><th>A</th><th>B</th><th>Y</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></table></div>
+<div class="gate"><h4>OR (atau)</h4><svg viewBox="0 0 240 92"><path d="M38 18 Q75 46 38 74 Q70 74 105 46 Q70 18 38 18 Z" fill="none" stroke="#1d4ed8" stroke-width="3"/><path d="M12 31 H49 M12 61 H49 M105 46 H145" stroke="#1d4ed8" stroke-width="3"/><text x="13" y="23" font-size="12">A</text><text x="13" y="54" font-size="12">B</text><text x="148" y="50" font-size="12">Y</text></svg><p>Output 1 jika minimal satu input 1: \(Y = A \lor B\).</p><table><tr><th>A</th><th>B</th><th>Y</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></table></div>
+<div class="gate"><h4>NAND (NOT-AND)</h4><svg viewBox="0 0 240 92"><path d="M40 18 H70 A28 28 0 0 1 70 74 H40 Z" fill="none" stroke="#1d4ed8" stroke-width="3"/><circle cx="103" cy="46" r="6" fill="white" stroke="#1d4ed8" stroke-width="3"/><path d="M12 31 H40 M12 61 H40 M109 46 H145" stroke="#1d4ed8" stroke-width="3"/><text x="13" y="23" font-size="12">A</text><text x="13" y="54" font-size="12">B</text><text x="148" y="50" font-size="12">Y</text></svg><p>Kebalikan AND: output 0 hanya saat semua input 1.</p><table><tr><th>A</th><th>B</th><th>Y</th></tr><tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr></table></div>
+<div class="gate"><h4>NOR (NOT-OR)</h4><svg viewBox="0 0 240 92"><path d="M38 18 Q75 46 38 74 Q70 74 98 46 Q70 18 38 18 Z" fill="none" stroke="#1d4ed8" stroke-width="3"/><circle cx="104" cy="46" r="6" fill="white" stroke="#1d4ed8" stroke-width="3"/><path d="M12 31 H49 M12 61 H49 M110 46 H145" stroke="#1d4ed8" stroke-width="3"/><text x="13" y="23" font-size="12">A</text><text x="13" y="54" font-size="12">B</text><text x="148" y="50" font-size="12">Y</text></svg><p>Kebalikan OR: output 1 hanya saat semua input 0.</p><table><tr><th>A</th><th>B</th><th>Y</th></tr><tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>0</td></tr></table></div>
+<div class="gate"><h4>XOR (OR eksklusif)</h4><svg viewBox="0 0 240 92"><path d="M30 18 Q67 46 30 74 M43 18 Q80 46 43 74 Q75 74 105 46 Q75 18 43 18 Z" fill="none" stroke="#1d4ed8" stroke-width="3"/><path d="M12 31 H50 M12 61 H50 M105 46 H145" stroke="#1d4ed8" stroke-width="3"/><text x="13" y="23" font-size="12">A</text><text x="13" y="54" font-size="12">B</text><text x="148" y="50" font-size="12">Y</text></svg><p>Output 1 jika input berbeda: \(Y = A \oplus B\).</p><table><tr><th>A</th><th>B</th><th>Y</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1</td></tr><tr><td>1</td><td>0</td><td>1</td></tr><tr><td>1</td><td>1</td><td>0</td></tr></table></div>
+<div class="gate"><h4>XNOR (kesamaan)</h4><svg viewBox="0 0 240 92"><path d="M30 18 Q67 46 30 74 M43 18 Q80 46 43 74 Q75 74 98 46 Q75 18 43 18 Z" fill="none" stroke="#1d4ed8" stroke-width="3"/><circle cx="104" cy="46" r="6" fill="white" stroke="#1d4ed8" stroke-width="3"/><path d="M12 31 H50 M12 61 H50 M110 46 H145" stroke="#1d4ed8" stroke-width="3"/><text x="13" y="23" font-size="12">A</text><text x="13" y="54" font-size="12">B</text><text x="148" y="50" font-size="12">Y</text></svg><p>Kebalikan XOR: output 1 jika input sama.</p><table><tr><th>A</th><th>B</th><th>Y</th></tr><tr><td>0</td><td>0</td><td>1</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1</td></tr></table></div>
+</div>
+<div class="warning"><b>Ingat:</b> NOT memakai satu input. Gerbang AND, OR, NAND, NOR, XOR, dan XNOR pada modul ini memakai dua input. NAND dan NOR disebut gerbang universal karena kombinasi gerbang sejenis dapat membentuk fungsi logika lain.</div>
+</section>
+<section class="card" id="simulasi"><h2>4. Simulasi Input–Output</h2><p>Pilih gerbang, lalu ubah nilai input A dan B. Output akan dihitung otomatis. Untuk NOT, input B tidak digunakan.</p>
+<div class="sim-box"><div class="controls"><label for="gateType">Pilih gerbang:</label><select id="gateType"><option value="AND">AND</option><option value="OR">OR</option><option value="NOT">NOT</option><option value="NAND">NAND</option><option value="NOR">NOR</option><option value="XOR">XOR</option><option value="XNOR">XNOR</option></select>
+<label for="inputA">Input A:</label><select id="inputA"><option value="0">0 (LOW)</option><option value="1">1 (HIGH)</option></select>
+<label for="inputB" id="labelB">Input B:</label><select id="inputB"><option value="0">0 (LOW)</option><option value="1">1 (HIGH)</option></select></div>
+<div class="grid"><div class="mini"><strong>Masukan</strong><div id="inputReadout">A = 0, B = 0</div></div><div class="mini"><strong>Gerbang</strong><div class="big-digit" id="gateReadout">AND</div></div><div class="mini"><strong>Keluaran Y</strong><div class="big-digit" id="outputReadout">0</div><span class="lamp off" id="outputLamp">● Output LOW / Mati</span></div></div><p id="explain" class="note" style="margin-top:14px">AND menghasilkan 1 hanya jika kedua input bernilai 1.</p></div>
+<h3>Coba tantangan</h3><ol><li>Atur AND dengan A=1 dan B=0. Catat output.</li><li>Atur OR dengan A=0 dan B=1. Catat output.</li><li>Atur XOR dengan A=1 dan B=1. Catat output.</li><li>Atur NOT dengan A=0. Catat output.</li></ol>
+</section>
+<section class="card" id="penerapan"><h2>5. Contoh Penerapan dalam Kehidupan</h2><div class="grid">
+<div class="mini"><strong>AND — syarat ganda</strong><p>Simulasi: mesin dapat berjalan jika tombol mulai ditekan <em>dan</em> pelindung terpasang. Kedua kondisi harus benar.</p></div>
+<div class="mini"><strong>OR — salah satu syarat</strong><p>Alarm dapat aktif jika sensor pintu <em>atau</em> sensor jendela mendeteksi kondisi tertentu.</p></div>
+<div class="mini"><strong>NOT — pembalik keadaan</strong><p>Sinyal “tidak terdeteksi” dapat dibentuk dari kebalikan sinyal deteksi, sesuai rancangan rangkaian.</p></div>
+<div class="mini"><strong>NAND / NOR</strong><p>Dapat digunakan sebagai bagian rangkaian pengendali, pengunci logika, dan pembentuk fungsi digital.</p></div>
+<div class="mini"><strong>XOR — kondisi berbeda</strong><p>Indikator menyala ketika dua masukan berbeda, misalnya untuk mendeteksi ketidaksamaan dua bit.</p></div>
+<div class="mini"><strong>XNOR — kondisi sama</strong><p>Rangkaian pembanding bit dapat memberi keluaran 1 jika kedua bit yang dibandingkan sama.</p></div>
+</div><p class="small">Contoh di atas merupakan model konseptual. Implementasi nyata bergantung pada sensor, rangkaian, dan program yang digunakan.</p>
+</section>
+<section class="card" id="lkpd"><h2>6. LKPD — Menguji Gerbang Logika</h2><p><b>Petunjuk:</b> isi identitas, lakukan percobaan simulasi, lalu tuliskan hasil dan kesimpulan. Gunakan bahasa sendiri.</p>
+<div class="controls"><label for="studentName">Nama:</label><input id="studentName" type="text" placeholder="Nama lengkap"><label for="studentClass">Kelas:</label><select id="studentClass"><option value="">Pilih kelas</option><option>VIIIA</option><option>VIIIB</option><option>VIIIC</option><option>VIIID</option><option>VIIIE</option><option>VIIIF</option><option>VIIIG</option><option>VII</option><option>VIII</option><option>IX</option></select></div>
+<table><tr><th>No.</th><th>Gerbang</th><th>Input A</th><th>Input B</th><th>Prediksi output</th><th>Hasil simulasi</th></tr>
+<tr><td>1</td><td>AND</td><td>1</td><td>0</td><td><select id="lk1"><option value="">Pilih</option><option>0</option><option>1</option></select></td><td>0</td></tr>
+<tr><td>2</td><td>OR</td><td>0</td><td>1</td><td><select id="lk2"><option value="">Pilih</option><option>0</option><option>1</option></select></td><td>1</td></tr>
+<tr><td>3</td><td>XOR</td><td>1</td><td>1</td><td><select id="lk3"><option value="">Pilih</option><option>0</option><option>1</option></select></td><td>0</td></tr>
+<tr><td>4</td><td>NOT</td><td>0</td><td>—</td><td><select id="lk4"><option value="">Pilih</option><option>0</option><option>1</option></select></td><td>1</td></tr>
+<tr><td>5</td><td>NAND</td><td>1</td><td>1</td><td><select id="lk5"><option value="">Pilih</option><option>0</option><option>1</option></select></td><td>0</td></tr></table>
+<label for="lkConclusion"><b>Kesimpulan percobaan:</b></label><textarea id="lkConclusion" rows="4" style="width:100%;padding:10px;border:1px solid #bac8dd;border-radius:8px;font:inherit" placeholder="Tuliskan hal yang kamu pahami tentang hubungan input dan output..."></textarea>
+<div class="controls no-print"><button id="saveLkpd" class="green">Simpan LKPD di perangkat ini</button><button class="secondary" onclick="window.print()">Cetak modul / LKPD</button><span id="lkStatus" class="status" aria-live="polite"></span></div>
+</section>
+<section class="card" id="kuis"><h2>7. Kuis Interaktif — 30 Soal dari Bank 35 Soal</h2><p>Waktu pengerjaan <b>60 menit</b>. Sistem memilih 30 soal secara acak dari bank 35 soal dan mengacak pilihan jawaban. Jawaban tersimpan otomatis pada perangkat/browser ini. Pastikan mengirim kuis sebelum waktu habis.</p>
+<div class="grid"><div class="mini"><strong>Jam real time</strong><div class="big-digit" id="clock">--:--:--</div><div class="small" id="todayDate"></div></div><div class="mini"><strong>Waktu tersisa</strong><div class="big-digit" id="countdown">60:00</div><div class="small">Hitung mundur dimulai saat tombol Mulai Kuis ditekan.</div></div><div class="mini"><strong>Progres</strong><div class="big-digit" id="progress">0 / 30</div><div class="small">Jumlah soal yang telah dijawab.</div></div></div>
+<div class="quiz-tools no-print" style="margin:16px 0"><button id="startQuiz">Mulai / Acak Kuis</button><button id="saveQuiz" class="secondary" disabled>Simpan jawaban</button><button id="submitQuiz" class="green" disabled>Kumpulkan & Nilai</button><span id="quizStatus" class="status" aria-live="polite">Kuis belum dimulai.</span></div>
+<div id="quizArea"></div><div id="scoreBox" class="note hidden" aria-live="polite"></div>
+</section>
+<section class="card" id="admin"><h2>8. Panel Guru / Admin</h2><p>Panel ini membantu guru meninjau hasil yang tersimpan pada browser/perangkat yang digunakan. Penyimpanan <b>localStorage</b> bersifat lokal; data tidak otomatis terkirim ke komputer guru atau server. Untuk menggabungkan jawaban dari banyak perangkat, diperlukan backend/server atau pengumpulan file dari setiap perangkat.</p>
+<div class="warning"><b>Privasi:</b> jangan gunakan perangkat bersama tanpa izin. Ekspor CSV berisi nama, kelas, skor, waktu, dan jawaban siswa. Simpan file dengan aman.</div>
+<div class="controls no-print"><label for="adminPin">PIN guru (default: 2468):</label><input id="adminPin" type="password" placeholder="Masukkan PIN"><button id="adminLogin">Buka panel</button><span id="adminStatus" class="status" aria-live="polite"></span></div>
+<div id="adminPanel" class="hidden"><div class="controls no-print"><button id="downloadCsv" class="green">Unduh rekap CSV</button><button id="downloadJson" class="secondary">Unduh data JSON</button><button id="clearData" class="danger">Hapus semua data lokal</button></div><p id="recordCount"></p><div style="overflow-x:auto"><table id="recordsTable"><thead><tr><th>Nama</th><th>Kelas</th><th>Nilai</th><th>Waktu</th><th>Jenis</th></tr></thead><tbody></tbody></table></div></div>
+</section>
+<section class="card"><h2>9. Refleksi Peserta Didik</h2><p>Lengkapi setelah mempelajari modul.</p><ol><li>Gerbang logika yang paling mudah saya pahami adalah … karena …</li><li>Hal yang masih membingungkan bagi saya adalah …</li><li>Contoh penggunaan gerbang logika yang saya temukan di sekitar saya adalah …</li></ol><p><b>Kriteria keberhasilan:</b> mampu membedakan fungsi gerbang, membaca tabel kebenaran, memprediksi keluaran, dan menjelaskan satu contoh penerapan.</p></section>
+</main><footer>Modul Ajar Informatika • SMP Negeri 2 Ngadirejo • Budi Winarno, S.Kom.</footer>
+<script>
+const $=id=>document.getElementById(id);
+const gateType=$('gateType'), inputA=$('inputA'), inputB=$('inputB');
+function calc(g,a,b){a=+a;b=+b;switch(g){case'NOT':return 1-a;case'AND':return a&b;case'OR':return a|b;case'NAND':return 1-(a&b);case'NOR':return 1-(a|b);case'XOR':return a^b;case'XNOR':return 1-(a^b);}}
+const explanations={NOT:'NOT membalik nilai input: 0 menjadi 1, dan 1 menjadi 0.',AND:'AND menghasilkan 1 hanya jika A dan B sama-sama 1.',OR:'OR menghasilkan 1 jika sedikitnya salah satu input bernilai 1.',NAND:'NAND adalah kebalikan AND: hasil 0 hanya jika A dan B sama-sama 1.',NOR:'NOR adalah kebalikan OR: hasil 1 hanya jika A dan B sama-sama 0.',XOR:'XOR menghasilkan 1 jika kedua input berbeda.',XNOR:'XNOR menghasilkan 1 jika kedua input sama.'};
+function updateSim(){let g=gateType.value,a=inputA.value,b=inputB.value,y=calc(g,a,b);$('labelB').classList.toggle('hidden',g==='NOT');inputB.classList.toggle('hidden',g==='NOT');$('inputReadout').textContent=g==='NOT'?`A = ${a}`:`A = ${a}, B = ${b}`;$('gateReadout').textContent=g;$('outputReadout').textContent=y;$('outputLamp').textContent=y?'● Output HIGH / Aktif':'● Output LOW / Mati';$('outputLamp').className='lamp '+(y?'on':'off');$('explain').textContent=explanations[g];}
+[gateType,inputA,inputB].forEach(el=>el.addEventListener('change',updateSim));updateSim();
+function tickClock(){const d=new Date();$('clock').textContent=d.toLocaleTimeString('id-ID',{hour12:false});$('todayDate').textContent=d.toLocaleDateString('id-ID',{weekday:'long',year:'numeric',month:'long',day:'numeric'});}tickClock();setInterval(tickClock,1000);
+const bank=[
+['Gerbang yang membalik nilai input disebut …',['NOT','AND','OR','XOR'],0],
+['Gerbang AND menghasilkan output 1 ketika …',['Semua input bernilai 1','Semua input bernilai 0','Minimal satu input 0','Input berbeda'],0],
+['Pada gerbang OR, A=0 dan B=0 menghasilkan …',['0','1','A','Tidak tentu'],0],
+['Gerbang yang menghasilkan 1 saat input berbeda adalah …',['XOR','XNOR','NAND','AND'],0],
+['XNOR menghasilkan output 1 ketika …',['Kedua input sama','Kedua input berbeda','Semua input 0 saja','Semua input 1 saja'],0],
+['Jika input NOT adalah 1, outputnya …',['0','1','2','Tidak ada'],0],
+['Gerbang NAND merupakan kebalikan dari …',['AND','OR','XOR','NOT'],0],
+['Gerbang NOR merupakan kebalikan dari …',['OR','AND','XNOR','NOT'],0],
+['Berapa kombinasi input untuk gerbang dua masukan?',['4','2','3','8'],0],
+['Nilai logika yang biasa mewakili keadaan LOW adalah …',['0','1','2','10'],0],
+['Pada AND dengan A=1 dan B=0, output Y adalah …',['0','1','10','Tidak tentu'],0],
+['Pada OR dengan A=0 dan B=1, output Y adalah …',['1','0','2','Tidak tentu'],0],
+['Pada XOR dengan A=1 dan B=1, output Y adalah …',['0','1','2','Tidak tentu'],0],
+['Pada XNOR dengan A=0 dan B=0, output Y adalah …',['1','0','2','Tidak tentu'],0],
+['Pada NAND dengan A=1 dan B=1, output Y adalah …',['0','1','2','Tidak tentu'],0],
+['Pada NOR dengan A=0 dan B=1, output Y adalah …',['0','1','2','Tidak tentu'],0],
+['Gerbang yang hanya memerlukan satu input pada materi ini adalah …',['NOT','AND','OR','NAND'],0],
+['Tabel kebenaran digunakan untuk menunjukkan …',['Output untuk setiap kombinasi input','Harga komponen','Kecepatan internet','Ukuran kabel'],0],
+['Dalam sistem digital, nilai 1 sering diartikan sebagai …',['HIGH atau aktif','LOW atau mati','Tidak diketahui','Selalu rusak'],0],
+['Dua input pada AND adalah 1 dan 1. Outputnya …',['1','0','2','Tidak tentu'],0],
+['Dua input pada OR adalah 1 dan 1. Outputnya …',['1','0','2','Tidak tentu'],0],
+['Dua input pada XOR adalah 0 dan 1. Outputnya …',['1','0','2','Tidak tentu'],0],
+['Dua input pada XNOR adalah 1 dan 0. Outputnya …',['0','1','2','Tidak tentu'],0],
+['Gerbang universal yang dapat dirangkai membentuk fungsi logika lain ialah …',['NAND dan NOR','AND dan OR saja','NOT saja','XOR saja'],0],
+['Contoh konsep AND yang sesuai adalah …',['Mesin aktif jika tombol ditekan dan pelindung terpasang','Alarm jika salah satu sensor aktif','Membalik sinyal','Membandingkan bit sama'],0],
+['Contoh konsep OR yang sesuai adalah …',['Alarm aktif jika sensor pintu atau jendela mendeteksi kondisi','Mesin butuh dua syarat sekaligus','Membalik satu input','Output 1 hanya jika input sama'],0],
+['Rangkaian pembanding bit dapat memakai gerbang … untuk output 1 saat bit sama.',['XNOR','XOR','OR','NAND'],0],
+['Jika input A=0 pada NOT, hasil Y=1. Pernyataan ini …',['Benar','Salah','Hanya benar untuk AND','Tidak dapat ditentukan'],0],
+['Output AND bernilai 0 ketika …',['Sedikitnya satu input 0','Kedua input harus 1','Input harus berbeda saja','Kedua input selalu 0 saja'],0],
+['Output OR bernilai 0 hanya ketika …',['A=0 dan B=0','A=1 dan B=1','A berbeda B','A=1 atau B=1'],0],
+['Output NAND bernilai 1 ketika …',['Tidak semua input bernilai 1','Semua input harus 1','Input harus sama','A harus 1 saja'],0],
+['Output NOR bernilai 1 ketika …',['Semua input bernilai 0','Salah satu input 1','Kedua input berbeda','Semua input 1'],0],
+['Jika XOR menerima A=1 dan B=0, outputnya …',['1','0','2','Tidak tentu'],0],
+['Jika XNOR menerima A=1 dan B=1, outputnya …',['1','0','2','Tidak tentu'],0],
+['Komponen konseptual dalam gerbang logika meliputi …',['Input, aturan logika, output','Monitor, meja, kursi','Nama, kelas, alamat','File, folder, printer saja'],0]
+];
+let quizQuestions=[],quizStarted=false,quizFinished=false,timerHandle=null,timeLeft=3600,startedAt=null,answers={};
+const STORE='modulGerbangLogikaRecords_v1';
+function shuffle(arr){let a=arr.slice();for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function startQuiz(){if(quizStarted&&!quizFinished&&!confirm('Mulai ulang akan mengganti soal dan menghapus jawaban kuis yang sedang berlangsung. Lanjutkan?'))return;clearInterval(timerHandle);quizQuestions=shuffle(bank).slice(0,30).map((q,i)=>{let opts=q[1].map((t,j)=>({t,correct:j===q[2]}));opts=shuffle(opts);return {id:i+1,q:q[0],opts,correct:opts.findIndex(o=>o.correct)};});answers={};quizStarted=true;quizFinished=false;timeLeft=3600;startedAt=new Date().toISOString();$('scoreBox').classList.add('hidden');$('quizStatus').textContent='Kuis sedang berlangsung.';$('saveQuiz').disabled=false;$('submitQuiz').disabled=false;renderQuiz();updateProgress();timerHandle=setInterval(()=>{timeLeft--;renderTimer();if(timeLeft<=0){clearInterval(timerHandle);submitQuiz(true);}},1000);renderTimer();}
+function renderQuiz(){const area=$('quizArea');area.innerHTML='';quizQuestions.forEach((q,i)=>{const box=document.createElement('div');box.className='question';let title=document.createElement('p');title.innerHTML='<b>Soal '+(i+1)+'.</b> '+q.q;box.appendChild(title);q.opts.forEach((op,j)=>{let lab=document.createElement('label');lab.className='option';let inp=document.createElement('input');inp.type='radio';inp.name='q'+q.id;inp.value=j;inp.checked=answers[q.id]===j;inp.disabled=quizFinished;inp.addEventListener('change',()=>{answers[q.id]=j;updateProgress();autoSaveDraft();});lab.appendChild(inp);lab.append(' '+String.fromCharCode(65+j)+'. '+op.t);box.appendChild(lab);});area.appendChild(box);});}
+function updateProgress(){let n=Object.keys(answers).length;$('progress').textContent=n+' / '+quizQuestions.length;}
+function renderTimer(){let m=Math.floor(timeLeft/60),s=timeLeft%60;$('countdown').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');if(timeLeft<300)$('countdown').style.color='#b42318';else $('countdown').style.color='#1d4ed8';}
+function records(){try{return JSON.parse(localStorage.getItem(STORE)||'[]')}catch(e){return []}}
+function addRecord(record){let r=records();r.push(record);localStorage.setItem(STORE,JSON.stringify(r));}
+function autoSaveDraft(){try{localStorage.setItem('modulGerbangLogikaDraft',JSON.stringify({answers,startedAt,timeLeft,quizQuestions:quizQuestions.map(q=>({id:q.id,q:q.q,opts:q.opts,correct:q.correct}))}));}catch(e){}}
+$('startQuiz').addEventListener('click',startQuiz);
+$('saveQuiz').addEventListener('click',()=>{autoSaveDraft();$('quizStatus').textContent='Jawaban sementara tersimpan pada browser/perangkat ini.';});
+function submitQuiz(auto=false){if(!quizStarted||quizFinished)return;if(!auto&&!confirm('Kumpulkan jawaban sekarang?'))return;clearInterval(timerHandle);quizFinished=true;let score=0;quizQuestions.forEach(q=>{if(answers[q.id]!==undefined&&q.opts[answers[q.id]].correct)score++;});let result=Math.round(score/quizQuestions.length*100);let rec={nama:$('studentName').value.trim()||'Belum diisi',kelas:$('studentClass').value||'Belum diisi',nilai:result,benar:score,total:quizQuestions.length,waktu:new Date().toISOString(),mulai:startedAt,sisaDetik:timeLeft,jenis:'Kuis',jawaban:quizQuestions.map(q=>({nomor:q.id,soal:q.q,jawaban:answers[q.id]===undefined?'Tidak dijawab':q.opts[answers[q.id]].t,benar:q.opts.find(o=>o.correct).t,tepat:answers[q.id]!==undefined&&q.opts[answers[q.id]].correct}))};addRecord(rec);$('scoreBox').classList.remove('hidden');$('scoreBox').innerHTML='<b>Hasil kuis:</b> '+score+' dari '+quizQuestions.length+' jawaban benar. Nilai: <b>'+result+'</b>/100.'+(auto?' Waktu habis, kuis dikumpulkan otomatis.':'')+'<br><span class="small">Hasil tersimpan pada browser ini. Guru dapat mengekspor rekap melalui Panel Guru/Admin.</span>'; $('quizStatus').textContent='Kuis telah dikumpulkan.';$('saveQuiz').disabled=true;$('submitQuiz').disabled=true;renderQuiz();loadAdminTable();}
+$('submitQuiz').addEventListener('click',()=>submitQuiz(false));
+$('saveLkpd').addEventListener('click',()=>{const data={nama:$('studentName').value.trim()||'Belum diisi',kelas:$('studentClass').value||'Belum diisi',kesimpulan:$('lkConclusion').value,hasil:[1,2,3,4,5].map(n=>({nomor:n,prediksi:$('lk'+n).value})),waktu:new Date().toISOString(),jenis:'LKPD'};addRecord(data);$('lkStatus').textContent='LKPD tersimpan pada browser/perangkat ini.';loadAdminTable();});
+$('adminLogin').addEventListener('click',()=>{if($('adminPin').value==='2468'){$('adminPanel').classList.remove('hidden');$('adminStatus').textContent='Panel terbuka.';loadAdminTable();}else $('adminStatus').textContent='PIN tidak sesuai.';});
+function loadAdminTable(){const rs=records();$('recordCount').textContent='Jumlah rekaman lokal: '+rs.length;const body=$('recordsTable').querySelector('tbody');body.innerHTML='';rs.forEach(r=>{let tr=document.createElement('tr');[r.nama||'',r.kelas||'',r.nilai===undefined?'—':r.nilai,r.waktu?new Date(r.waktu).toLocaleString('id-ID'):'—',r.jenis||''].forEach(v=>{let td=document.createElement('td');td.textContent=v;tr.appendChild(td)});body.appendChild(tr);});}
+function downloadFile(name,content,type){const blob=new Blob([content],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+$('downloadJson').addEventListener('click',()=>downloadFile('rekap-gerbang-logika.json',JSON.stringify(records(),null,2),'application/json;charset=utf-8'));
+$('downloadCsv').addEventListener('click',()=>{const rs=records();const rows=[['Nama','Kelas','Nilai','Benar','Total','Waktu','Jenis','Detail jawaban']];rs.forEach(r=>rows.push([r.nama||'',r.kelas||'',r.nilai??'',r.benar??'',r.total??'',r.waktu||'',r.jenis||'',JSON.stringify(r.jawaban||r.hasil||r.kesimpulan||'')]));const csv=rows.map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');downloadFile('rekap-gerbang-logika.csv','\ufeff'+csv,'text/csv;charset=utf-8');});
+$('clearData').addEventListener('click',()=>{if(confirm('Yakin menghapus semua rekaman kuis dan LKPD dari browser ini? Tindakan ini tidak dapat dibatalkan.')){localStorage.removeItem(STORE);loadAdminTable();$('adminStatus').textContent='Data lokal dihapus.';}});
+loadAdminTable();
+</script>
+</body></html>
